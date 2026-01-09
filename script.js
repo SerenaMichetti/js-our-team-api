@@ -10,7 +10,7 @@ function renderCards(dati){
   
   let htmlCards = ''
   
-  for (const teamMember of teamMembers) {
+  for (const teamMember of dati) {
     let card = `<div class="card" style="width: 18rem;">
     <img class="card-img-top" src="${teamMember.img}" alt="Card image cap">
     <div class="card-body">
@@ -29,6 +29,10 @@ function renderCards(dati){
 
 axios.get(apiUrl).then(response =>{
   renderCards(response.data);
-}).catch(err=>){
-  
-}
+}).catch(err => {
+console.log('Errore '. err.message);
+document.getElementById('cards-container').innerHTML = 'Errore chiamata';
+}).finally(()=>{
+  console.log('chiamata terminata');
+})
+
